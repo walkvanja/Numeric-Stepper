@@ -7,6 +7,8 @@
     
     Copyright (c) Luciano Longo
     
+    updated by Vanja Gaidouchek
+    
     Permission is hereby granted, free of charge, to any person obtaining a copy of
     this software and associated documentation files (the "Software"), to deal in
     the Software without restriction, including without limitation the rights to
@@ -30,6 +32,7 @@
             type: 'float',                  // or 'int'
             floatPrecission: 2,             // decimal precission
             ui: true,                       // +/- buttons
+            buttons: [null, null],          // element id's for buttons
             allowWheel: true,               // mouse wheel
             allowArrows: true,              // keyboar arrows (up, down)
             arrowStep: 1,                   // ammount to increment with arrow keys
@@ -83,18 +86,23 @@
             
             if( _options.ui )
             {
-                var $btnWrap = $('<div class="stepper-btn-wrap"/>').appendTo( $wrap ),
-                    $btnUp   = $('<a class="stepper-btn-up">'+_options.incrementButton+'</a>').appendTo( $btnWrap ),
-                    $btnDown = $('<a class="stepper-btn-dwn">'+_options.decrementButton+'</a>').appendTo( $btnWrap );
-                
-                $wrap.css({
-                    'margin-top': $this.css('margin-top'),
-                    'margin-left': $this.css('margin-left'),
-                    'margin-bottom': $this.css('margin-bottom'),
-                    'margin-right': $btnWrap.outerWidth() + parseInt( $this.css('margin-right') )
-                });
-
-                $this.css('margin', 0);
+                if (_options.buttons[0] == null ||  _options.buttons[1] == null) {
+                    var $btnWrap = $('<div class="stepper-btn-wrap"/>').appendTo( $wrap ),
+                        $btnUp   = $('<a class="stepper-btn-up">'+_options.incrementButton+'</a>').appendTo( $btnWrap ),
+                        $btnDown = $('<a class="stepper-btn-dwn">'+_options.decrementButton+'</a>').appendTo( $btnWrap );
+                    
+                    $wrap.css({
+                        'margin-top': $this.css('margin-top'),
+                        'margin-left': $this.css('margin-left'),
+                        'margin-bottom': $this.css('margin-bottom'),
+                        'margin-right': $btnWrap.outerWidth() + parseInt( $this.css('margin-right') )
+                    });
+    
+                    $this.css('margin', 0);
+                } else {
+                     var $btnUp   = $('#'+_options.buttons[0]),
+                         $btnDown = $('#'+_options.buttons[1]);
+                }
 
                 var stepInterval;
                 
