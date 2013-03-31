@@ -32,7 +32,7 @@
             type: 'float',                  // or 'int'
             floatPrecission: 2,             // decimal precission
             ui: true,                       // +/- buttons
-            buttons: [null, null],          // element id's for buttons
+            buttons: [null, null],          // unique element id's for buttons
             allowWheel: true,               // mouse wheel
             allowArrows: true,              // keyboar arrows (up, down)
             arrowStep: 1,                   // ammount to increment with arrow keys
@@ -101,7 +101,7 @@
                     $this.css('margin', 0);
                 } else {
                      var $btnUp   = $('#'+_options.buttons[0]),
-                         $btnDown = $('#'+_options.buttons[1]);
+                         $btnDown = $('#'+_options.buttons[1]);                  
                 }
 
                 var stepInterval;
